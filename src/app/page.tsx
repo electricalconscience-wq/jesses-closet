@@ -4,129 +4,123 @@ import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import LookCard from '@/components/LookCard';
 import Newsletter from '@/components/Newsletter';
-import { getFeaturedProducts } from '@/data/products';
+import { getFeaturedProducts, getAllProducts } from '@/data/products';
 import { getFeaturedLooks } from '@/data/looks';
-import { getAllProducts } from '@/data/products';
 
 const categories = [
-  { name: 'Hoodies', slug: 'hoodies', color: '#e8c840', count: '9', icon: '🧥' },
-  { name: 'Jackets', slug: 'jackets', color: '#8B4513', count: '2', icon: '🧥' },
-  { name: 'Pants', slug: 'pants', color: '#7e9bb5', count: '3', icon: '👖' },
-  { name: 'Tees', slug: 'tees', color: '#c0392b', count: '4', icon: '👕' },
-  { name: 'Accessories', slug: 'accessories', color: '#CD853F', count: '4', icon: '🧢' },
-  { name: 'Shoes', slug: 'shoes', color: '#f0f0f0', count: '3', icon: '👟' },
+  { name: 'HOODIES', slug: 'hoodies', count: '9', color: '#FFD700' },
+  { name: 'JACKETS', slug: 'jackets', count: '2', color: '#CC5500' },
+  { name: 'PANTS', slug: 'pants', count: '3', color: '#7e9bb5' },
+  { name: 'TEES', slug: 'tees', count: '4', color: '#FF1744' },
+  { name: 'ACCESSORIES', slug: 'accessories', count: '4', color: '#39FF14' },
+  { name: 'SHOES', slug: 'shoes', count: '3', color: '#FF1493' },
 ];
 
 export default function HomePage() {
   const featuredProducts = getFeaturedProducts();
   const featuredLooks = getFeaturedLooks().slice(0, 3);
   const allProducts = getAllProducts();
-
-  // Get products that have images for the showcase
   const productsWithImages = allProducts.filter(p => p.imageUrl);
 
   return (
     <>
       <Navbar />
-      <main>
-        {/* ===== HERO — Full-bleed desert photo + massive type ===== */}
-        <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
-          {/* Real desert photo background */}
+      <main className="pt-[calc(28px+56px)]">
+
+        {/* ===== HERO — Desert photo + massive Y2K type ===== */}
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+          {/* Desert photo bg */}
           <div className="absolute inset-0">
             <img
               src="https://images.unsplash.com/photo-1605751216159-fc4057eba116?w=1920&q=80&auto=format"
               alt=""
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-brand-black" />
-            <div className="absolute inset-0 bg-brand-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-brand-black" />
           </div>
 
-          {/* Desert ambient glow */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-[15%] left-[20%] w-[500px] h-[500px] rounded-full bg-brand-desert-orange/20 blur-[150px] animate-drift" />
-            <div className="absolute bottom-[20%] right-[15%] w-[400px] h-[400px] rounded-full bg-brand-yellow/15 blur-[120px] animate-drift" style={{ animationDelay: '-7s' }} />
+          {/* Glow blobs */}
+          <div className="absolute inset-0 opacity-15">
+            <div className="absolute top-[20%] left-[15%] w-[400px] h-[400px] rounded-full bg-brand-yellow/20 blur-[120px] animate-drift" />
+            <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-brand-neon/10 blur-[100px] animate-drift" style={{ animationDelay: '-7s' }} />
           </div>
 
-          {/* Dust particles */}
-          <div className="absolute inset-0 dust-particles opacity-30" />
+          <div className="absolute inset-0 dust-particles opacity-20" />
 
-          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-32">
-            <div className="animate-fade-in">
-              <span className="inline-block text-[10px] sm:text-xs tracking-[0.5em] uppercase text-brand-mesa font-mono mb-8 border border-brand-rust/40 px-5 py-2 rounded-sm bg-black/40 backdrop-blur-sm">
-                Albuquerque, New Mexico &mdash; 2008&ndash;2013
+          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+            {/* Location tag */}
+            <div className="animate-fade-in mb-8">
+              <span className="inline-block font-pixel text-sm tracking-[0.3em] text-brand-yellow border-2 border-brand-yellow/50 px-5 py-2 bg-black/60 backdrop-blur-sm">
+                ★ ALBUQUERQUE, NEW MEXICO ★ 2008–2013 ★
               </span>
             </div>
 
-            <h1 className="animate-slide-up font-display leading-[0.85] mb-8">
-              <span className="text-brand-cream block text-7xl sm:text-[10rem] lg:text-[14rem] tracking-[0.08em] drop-shadow-[0_4px_60px_rgba(232,200,64,0.15)]">JESSE&apos;S</span>
-              <span className="text-gradient block text-6xl sm:text-[8rem] lg:text-[11rem] tracking-[0.12em]">CLOSET</span>
+            {/* Title — BIG */}
+            <h1 className="animate-slide-up mb-6">
+              <span className="font-display text-brand-cream block text-8xl sm:text-[11rem] lg:text-[15rem] leading-[0.8] tracking-[0.08em] neon-glow" style={{ animation: 'flicker 3s ease-in-out infinite' }}>
+                JESSE&apos;S
+              </span>
+              <span className="font-display text-gradient block text-7xl sm:text-[9rem] lg:text-[12rem] leading-[0.85] tracking-[0.12em]">
+                CLOSET
+              </span>
             </h1>
 
-            <p className="animate-fade-in text-sm sm:text-base text-brand-sand/90 max-w-lg mx-auto leading-relaxed mb-12 font-mono" style={{ animationDelay: '0.2s' }}>
-              Every hoodie. Every beanie. Every pair of Dickies.<br />
-              <span className="text-brand-yellow">25 screen-matched pieces</span> from all 5 seasons of Breaking Bad.
-            </p>
+            {/* Tagline */}
+            <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <p className="font-pixel text-lg sm:text-xl text-brand-cream/80 max-w-lg mx-auto leading-relaxed mb-2">
+                Every hoodie. Every beanie. Every pair of Dickies.
+              </p>
+              <p className="font-pixel text-base text-brand-yellow">
+                25 screen-matched pieces from Breaking Bad
+              </p>
+            </div>
 
-            <div className="animate-fade-in flex flex-col sm:flex-row gap-4 justify-center" style={{ animationDelay: '0.4s' }}>
+            {/* CTA buttons */}
+            <div className="animate-fade-in flex flex-col sm:flex-row gap-3 justify-center mt-10" style={{ animationDelay: '0.4s' }}>
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center bg-brand-yellow text-brand-black px-10 py-4 rounded-sm text-lg font-bold tracking-[0.15em] hover:bg-brand-amber transition-all hover:scale-105 font-display shadow-[0_0_40px_rgba(232,200,64,0.2)]"
+                className="font-display text-xl tracking-[0.2em] bg-brand-yellow text-brand-black px-10 py-4 hover:bg-brand-neon transition-all hover:scale-105 shadow-[0_0_30px_rgba(255,215,0,0.25)]"
               >
-                SHOP THE ARCHIVE
+                ★ SHOP THE ARCHIVE ★
               </Link>
               <Link
                 href="/looks"
-                className="inline-flex items-center justify-center border border-brand-rust/50 text-brand-sand px-10 py-4 rounded-sm text-sm tracking-[0.15em] hover:bg-brand-rust/15 hover:border-brand-mesa/60 transition-all font-mono"
+                className="font-display text-lg tracking-[0.2em] border-2 border-brand-yellow/50 text-brand-yellow px-10 py-4 hover:bg-brand-yellow/10 hover:border-brand-yellow transition-all"
               >
-                Browse Looks
+                BROWSE LOOKS
               </Link>
             </div>
 
-            {/* Stats bar */}
-            <div className="animate-fade-in mt-16 flex items-center justify-center gap-8 sm:gap-12 text-center" style={{ animationDelay: '0.6s' }}>
-              <div>
-                <div className="text-2xl sm:text-3xl font-display text-brand-yellow tracking-wider">25</div>
-                <div className="text-[9px] font-mono text-brand-mid uppercase tracking-[0.2em]">Items</div>
-              </div>
-              <div className="w-px h-8 bg-brand-rust/30" />
-              <div>
-                <div className="text-2xl sm:text-3xl font-display text-brand-yellow tracking-wider">62</div>
-                <div className="text-[9px] font-mono text-brand-mid uppercase tracking-[0.2em]">Episodes</div>
-              </div>
-              <div className="w-px h-8 bg-brand-rust/30" />
-              <div>
-                <div className="text-2xl sm:text-3xl font-display text-brand-yellow tracking-wider">5</div>
-                <div className="text-[9px] font-mono text-brand-mid uppercase tracking-[0.2em]">Seasons</div>
-              </div>
-              <div className="w-px h-8 bg-brand-rust/30" />
-              <div>
-                <div className="text-2xl sm:text-3xl font-display text-brand-yellow tracking-wider">15+</div>
-                <div className="text-[9px] font-mono text-brand-mid uppercase tracking-[0.2em]">Brands</div>
-              </div>
-            </div>
-
-            {/* Scroll indicator */}
-            <div className="mt-16 animate-bounce">
-              <svg className="w-5 h-5 mx-auto text-brand-rust/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
+            {/* Stats row */}
+            <div className="animate-fade-in mt-14 inline-flex items-center gap-0 border-2 border-brand-yellow/30 bg-black/50 backdrop-blur-sm" style={{ animationDelay: '0.6s' }}>
+              {[
+                { num: '25', label: 'ITEMS' },
+                { num: '62', label: 'EPISODES' },
+                { num: '5', label: 'SEASONS' },
+                { num: '15+', label: 'BRANDS' },
+              ].map((stat, i) => (
+                <div key={stat.label} className={`px-5 sm:px-8 py-3 text-center ${i > 0 ? 'border-l-2 border-brand-yellow/30' : ''}`}>
+                  <div className="font-display text-2xl sm:text-3xl text-brand-yellow tracking-wider">{stat.num}</div>
+                  <div className="font-pixel text-[10px] text-brand-mid tracking-[0.2em]">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ===== PRODUCT IMAGE SHOWCASE — Scrolling collage ===== */}
+        {/* ===== PRODUCT IMAGE STRIP — horizontal scroll ===== */}
         {productsWithImages.length > 0 && (
-          <section className="py-12 bg-brand-charcoal/80 border-y border-brand-rust/15 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-              <span className="text-[10px] tracking-[0.4em] uppercase text-brand-rust font-mono">Real Products</span>
-              <h2 className="font-display text-2xl sm:text-3xl text-brand-cream mt-1 tracking-wide">WHAT&apos;S IN THE CLOSET</h2>
+          <section className="border-y-2 border-brand-yellow/30 bg-brand-charcoal relative overflow-hidden">
+            {/* Section header */}
+            <div className="bg-brand-yellow/10 border-b border-brand-yellow/20 px-4 py-3 flex items-center justify-between">
+              <h2 className="font-display text-lg tracking-[0.2em] text-brand-yellow">★ WHAT&apos;S IN THE CLOSET</h2>
+              <span className="font-pixel text-xs text-brand-mid">{allProducts.length} ITEMS</span>
             </div>
-            <div className="flex gap-4 px-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
+            <div className="flex gap-0 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
               {productsWithImages.map((product) => (
-                <Link key={product.id} href={`/shop/${product.slug}`} className="group shrink-0 snap-start">
-                  <div className="w-44 sm:w-52 bg-brand-charcoal border border-brand-rust/20 rounded-sm overflow-hidden hover:border-brand-yellow/30 transition-colors">
-                    <div className="aspect-square relative overflow-hidden bg-white/5">
+                <Link key={product.id} href={`/shop/${product.slug}`} className="group shrink-0 border-r border-brand-yellow/10">
+                  <div className="w-40 sm:w-48 bg-brand-charcoal hover:bg-brand-dark transition-colors">
+                    <div className="aspect-square relative overflow-hidden bg-white/5 border-b border-brand-yellow/10">
                       <img
                         src={product.imageUrl}
                         alt={product.name}
@@ -134,10 +128,10 @@ export default function HomePage() {
                         loading="lazy"
                       />
                     </div>
-                    <div className="p-3 border-t border-brand-rust/10">
-                      <p className="text-[9px] text-brand-mesa font-mono uppercase tracking-wider">{product.brand}</p>
+                    <div className="p-3">
+                      <p className="font-pixel text-[10px] text-brand-yellow tracking-wider">{product.brand}</p>
                       <p className="text-xs text-brand-cream line-clamp-2 mt-0.5">{product.name}</p>
-                      <p className="text-xs font-mono text-brand-yellow mt-1">${product.price}</p>
+                      <p className="font-pixel text-sm text-brand-neon mt-1">${product.price}</p>
                     </div>
                   </div>
                 </Link>
@@ -146,36 +140,29 @@ export default function HomePage() {
           </section>
         )}
 
-        {/* ===== CATEGORIES — Desert grid ===== */}
-        <section className="py-20 sm:py-28 border-t border-brand-rust/10">
+        {/* ===== CATEGORIES — bold Y2K grid ===== */}
+        <section className="py-16 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-end justify-between mb-12">
-              <div>
-                <span className="text-[10px] tracking-[0.4em] uppercase text-brand-rust font-mono">Categories</span>
-                <h2 className="font-display text-4xl sm:text-5xl text-brand-cream mt-2 tracking-wide">SHOP BY PIECE</h2>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-brand-yellow" />
+                <h2 className="font-display text-3xl sm:text-4xl text-brand-yellow tracking-[0.15em]">SHOP BY PIECE</h2>
               </div>
-              <Link href="/shop" className="text-sm text-brand-mesa hover:text-brand-yellow transition-colors hidden sm:block font-mono tracking-wider">
-                View All &rarr;
+              <Link href="/shop" className="font-pixel text-sm text-brand-yellow hover:text-brand-neon transition-colors">
+                VIEW ALL →
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
               {categories.map((cat) => (
                 <Link key={cat.slug} href={`/shop?category=${cat.slug}`} className="group block">
-                  <div className="hover-lift aspect-square rounded-sm overflow-hidden relative border border-brand-rust/15 hover:border-brand-yellow/30 transition-colors bg-brand-charcoal">
-                    <div
-                      className="absolute inset-0 opacity-15 group-hover:opacity-30 transition-opacity"
-                      style={{ background: `radial-gradient(circle at center, ${cat.color}55 0%, transparent 70%)` }}
-                    />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                      <div className="text-3xl mb-2 opacity-60 group-hover:opacity-90 transition-opacity group-hover:scale-110 transform duration-300">
-                        {cat.icon}
-                      </div>
-                      <h3 className="text-base font-display tracking-[0.15em] text-brand-cream group-hover:text-brand-yellow transition-colors uppercase">
-                        {cat.name}
-                      </h3>
-                      <p className="text-[10px] text-brand-mesa mt-1 font-mono">{cat.count} items</p>
-                    </div>
+                  <div className="card-y2k aspect-square flex flex-col items-center justify-center p-4 text-center relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity" style={{ background: cat.color }} />
+                    <h3 className="font-display text-base sm:text-lg tracking-[0.2em] group-hover:text-brand-yellow transition-colors" style={{ color: cat.color }}>
+                      {cat.name}
+                    </h3>
+                    <p className="font-pixel text-xs text-brand-mid mt-2">{cat.count} ITEMS</p>
+                    <div className="mt-3 w-8 h-0.5" style={{ background: cat.color, opacity: 0.4 }} />
                   </div>
                 </Link>
               ))}
@@ -183,20 +170,23 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ===== YELLOW DIVIDER ===== */}
+        <div className="divider-y2k" />
+
         {/* ===== FEATURED PRODUCTS ===== */}
-        <section className="py-20 sm:py-28 bg-gradient-to-b from-brand-charcoal/50 to-brand-black border-t border-brand-rust/10">
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-charcoal/30 to-brand-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-end justify-between mb-12">
-              <div>
-                <span className="text-[10px] tracking-[0.4em] uppercase text-brand-rust font-mono">Featured</span>
-                <h2 className="font-display text-4xl sm:text-5xl text-brand-cream mt-2 tracking-wide">EDITOR&apos;S PICKS</h2>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-brand-yellow" />
+                <h2 className="font-display text-3xl sm:text-4xl text-brand-yellow tracking-[0.15em]">EDITOR&apos;S PICKS</h2>
               </div>
-              <Link href="/shop" className="text-sm text-brand-mesa hover:text-brand-yellow transition-colors hidden sm:block font-mono tracking-wider">
-                Shop All &rarr;
+              <Link href="/shop" className="font-pixel text-sm text-brand-yellow hover:text-brand-neon transition-colors">
+                SHOP ALL →
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {featuredProducts.slice(0, 8).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -204,61 +194,64 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== BREAKING BAD TIMELINE ===== */}
-        <section className="py-20 sm:py-28 border-t border-brand-rust/10 relative overflow-hidden">
+        {/* ===== YELLOW DIVIDER ===== */}
+        <div className="divider-y2k" />
+
+        {/* ===== STYLE TIMELINE — season-by-season ===== */}
+        <section className="py-16 sm:py-20 relative overflow-hidden">
           <div className="absolute inset-0">
             <img
               src="https://images.unsplash.com/photo-1679969989197-28ccc4f0384c?w=1920&q=60&auto=format"
               alt=""
-              className="absolute inset-0 w-full h-full object-cover opacity-10"
+              className="absolute inset-0 w-full h-full object-cover opacity-8"
             />
-            <div className="absolute inset-0 bg-brand-black/80" />
+            <div className="absolute inset-0 bg-brand-black/90" />
           </div>
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-[10px] tracking-[0.4em] uppercase text-brand-rust font-mono">The Evolution</span>
-            <h2 className="font-display text-4xl sm:text-6xl text-brand-cream mt-2 mb-12 tracking-wide">STYLE TIMELINE</h2>
+          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-4xl sm:text-6xl text-brand-yellow tracking-[0.15em] neon-glow">STYLE TIMELINE</h2>
+              <p className="font-pixel text-sm text-brand-mid mt-2">HOW JESSE&apos;S WARDROBE EVOLVED ACROSS 5 SEASONS</p>
+            </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
               {[
-                { season: 'S1', year: '2008', vibe: 'Loud & Reckless', desc: 'Oversized hoodies, Affliction tees, baggy Levi\'s', color: '#e8c840' },
-                { season: 'S2', year: '2009', vibe: 'Peak Streetwear', desc: 'Volcom, SRH, Grenade — action sport brands everywhere', color: '#CC5500' },
-                { season: 'S3', year: '2010', vibe: 'Money Era', desc: 'Cuban chains, cleaner fits, more confident', color: '#c0392b' },
-                { season: 'S4', year: '2011', vibe: 'Dark Turn', desc: 'Black leather, Dim Mak tees, darker palette', color: '#6b6b6b' },
-                { season: 'S5', year: '2012-13', vibe: 'The End', desc: 'Stripped back, workwear, Carhartt essentials', color: '#8B4513' },
-              ].map((s) => (
-                <div key={s.season} className="group">
-                  <div className="w-full aspect-[3/4] rounded-sm border border-brand-rust/20 bg-brand-charcoal/50 flex flex-col items-center justify-center p-4 hover:border-brand-yellow/30 transition-colors relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-10" style={{ background: `radial-gradient(circle, ${s.color} 0%, transparent 70%)` }} />
-                    <div className="relative z-10">
-                      <div className="font-display text-4xl tracking-wider mb-1" style={{ color: s.color }}>{s.season}</div>
-                      <div className="text-[9px] font-mono text-brand-mid mb-3">{s.year}</div>
-                      <div className="text-sm font-display text-brand-cream tracking-wider uppercase mb-2">{s.vibe}</div>
-                      <div className="text-[10px] font-mono text-brand-mid leading-relaxed">{s.desc}</div>
-                    </div>
-                  </div>
+                { s: 'S1', yr: '2008', vibe: 'LOUD & RECKLESS', desc: 'Oversized hoodies, Affliction tees, baggy Levi\'s', c: '#FFD700' },
+                { s: 'S2', yr: '2009', vibe: 'PEAK STREETWEAR', desc: 'Volcom, SRH, Grenade — action sports everywhere', c: '#CC5500' },
+                { s: 'S3', yr: '2010', vibe: 'MONEY ERA', desc: 'Cuban chains, cleaner fits, more confident', c: '#FF1744' },
+                { s: 'S4', yr: '2011', vibe: 'DARK TURN', desc: 'Black leather, Dim Mak tees, darker palette', c: '#8B4513' },
+                { s: 'S5', yr: '2012', vibe: 'THE END', desc: 'Stripped back, Carhartt workwear essentials', c: '#6b6b6b' },
+              ].map((item) => (
+                <div key={item.s} className="card-y2k p-5 text-center relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-1" style={{ background: item.c }} />
+                  <div className="font-display text-5xl tracking-wider mb-1" style={{ color: item.c }}>{item.s}</div>
+                  <div className="font-pixel text-xs text-brand-mid mb-3">{item.yr}</div>
+                  <div className="font-display text-sm tracking-[0.15em] text-brand-cream mb-2">{item.vibe}</div>
+                  <div className="font-pixel text-xs text-brand-mid leading-relaxed">{item.desc}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ===== FEATURED LOOKS ===== */}
-        <section className="py-20 sm:py-28 border-t border-brand-rust/10">
+        {/* ===== YELLOW DIVIDER ===== */}
+        <div className="divider-y2k" />
+
+        {/* ===== CURATED LOOKS ===== */}
+        <section className="py-16 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-end justify-between mb-12">
-              <div>
-                <span className="text-[10px] tracking-[0.4em] uppercase text-brand-rust font-mono">Archive</span>
-                <h2 className="font-display text-4xl sm:text-5xl text-brand-cream mt-2 tracking-wide">CURATED LOOKS</h2>
-                <p className="text-sm text-brand-mid mt-2 max-w-lg font-mono">
-                  Deep-dives into iconic outfits. Broken down piece by piece, with shoppable links at every price point.
-                </p>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-brand-yellow" />
+                <h2 className="font-display text-3xl sm:text-4xl text-brand-yellow tracking-[0.15em]">CURATED LOOKS</h2>
               </div>
-              <Link href="/looks" className="text-sm text-brand-mesa hover:text-brand-yellow transition-colors hidden sm:block font-mono tracking-wider">
-                All Looks &rarr;
+              <Link href="/looks" className="font-pixel text-sm text-brand-yellow hover:text-brand-neon transition-colors">
+                ALL LOOKS →
               </Link>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <p className="font-pixel text-sm text-brand-mid mb-8 max-w-xl">
+              DEEP-DIVES INTO ICONIC OUTFITS. BROKEN DOWN PIECE BY PIECE, WITH SHOPPABLE LINKS AT EVERY PRICE POINT.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {featuredLooks.map((look) => (
                 <LookCard key={look.id} look={look} />
               ))}
@@ -266,13 +259,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== BRAND WALL ===== */}
-        <section className="py-16 bg-brand-charcoal/30 border-t border-brand-rust/10">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-[10px] tracking-[0.4em] uppercase text-brand-rust font-mono">Brands Identified</span>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-              {['Volcom', 'Carhartt', 'Nike', 'Vans', 'Dickies', 'Levi\'s', 'SRH', 'Metal Mulisha', 'Affliction', 'Grenade', 'Champion', 'Kenpo', 'Steve Aoki', 'Tre Vero'].map((brand) => (
-                <span key={brand} className="text-lg sm:text-xl font-display tracking-[0.15em] text-brand-mid/40 hover:text-brand-yellow/70 transition-colors uppercase cursor-default">
+        {/* ===== BRAND WALL — all 14 brands ===== */}
+        <section className="py-12 border-y-2 border-brand-yellow/20 bg-brand-charcoal/30">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 className="font-pixel text-xs text-brand-mid tracking-[0.3em] mb-6">★ BRANDS IDENTIFIED ★</h3>
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+              {['VOLCOM', 'CARHARTT', 'NIKE', 'VANS', 'DICKIES', "LEVI'S", 'SRH', 'METAL MULISHA', 'AFFLICTION', 'GRENADE', 'CHAMPION', 'KENPO', 'STEVE AOKI', 'TRE VERO'].map((brand) => (
+                <span key={brand} className="font-display text-lg sm:text-xl tracking-[0.2em] text-brand-mid/30 hover:text-brand-yellow transition-colors cursor-default">
                   {brand}
                 </span>
               ))}
@@ -280,37 +273,38 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== DESERT EDITORIAL BANNER ===== */}
-        <section className="py-20 sm:py-28 border-t border-brand-rust/10 relative overflow-hidden">
+        {/* ===== FINAL CTA — desert banner ===== */}
+        <section className="py-20 sm:py-28 relative overflow-hidden">
           <div className="absolute inset-0">
             <img
               src="https://images.unsplash.com/photo-1746673855384-610f90fb8d0e?w=1920&q=60&auto=format"
               alt=""
-              className="absolute inset-0 w-full h-full object-cover opacity-15"
+              className="absolute inset-0 w-full h-full object-cover opacity-10"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/90 to-brand-black" />
+            <div className="absolute inset-0 bg-brand-black/85" />
           </div>
           <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-[10px] tracking-[0.4em] uppercase text-brand-mesa font-mono">The Archive</span>
-            <h2 className="font-display text-5xl sm:text-7xl text-brand-cream mt-4 mb-6 leading-tight tracking-wide">
-              EVERY OUTFIT TELLS A STORY
+            <h2 className="font-display text-5xl sm:text-7xl text-brand-yellow tracking-[0.1em] mb-4 neon-glow">
+              EVERY OUTFIT.
             </h2>
-            <p className="text-sm sm:text-base text-brand-sand/80 max-w-xl mx-auto mb-10 font-mono leading-relaxed">
-              From screen-matched grails to $10 budget picks. 25 verified items across all 5 seasons of Breaking Bad.
-              Real brands. Real episodes. Real purchase links.
+            <h2 className="font-display text-5xl sm:text-7xl text-brand-cream tracking-[0.1em] mb-6">
+              EVERY STORY.
+            </h2>
+            <p className="font-pixel text-base text-brand-mid max-w-xl mx-auto mb-10 leading-relaxed">
+              FROM SCREEN-MATCHED GRAILS TO $10 BUDGET PICKS. 25 VERIFIED ITEMS ACROSS ALL 5 SEASONS. REAL BRANDS. REAL EPISODES. REAL PURCHASE LINKS.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center bg-brand-yellow text-brand-black px-10 py-4 rounded-sm text-lg font-bold tracking-[0.15em] hover:bg-brand-amber transition-all font-display"
+                className="font-display text-xl tracking-[0.2em] bg-brand-yellow text-brand-black px-10 py-4 hover:bg-brand-neon transition-all shadow-[0_0_30px_rgba(255,215,0,0.2)]"
               >
-                SHOP ALL 25 ITEMS
+                ★ SHOP ALL 25 ITEMS ★
               </Link>
               <Link
                 href="/looks"
-                className="inline-flex items-center justify-center border border-brand-rust/50 text-brand-sand px-10 py-4 rounded-sm text-sm tracking-[0.15em] hover:bg-brand-rust/15 transition-all font-mono"
+                className="font-display text-lg tracking-[0.2em] border-2 border-brand-yellow/50 text-brand-yellow px-10 py-4 hover:bg-brand-yellow/10 transition-all"
               >
-                Explore Looks
+                EXPLORE LOOKS
               </Link>
             </div>
           </div>
