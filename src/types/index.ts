@@ -2,7 +2,7 @@ export type MatchType = 'exact' | 'inspired' | 'budget';
 
 export type Category = 'hoodies' | 'jackets' | 'pants' | 'tees' | 'accessories' | 'shoes';
 
-export type Era = 'season-1' | 'season-2' | 'season-3' | 'season-4' | 'season-5';
+export type Era = 'season-1' | 'season-2' | 'season-3' | 'season-4' | 'season-5' | 'all-seasons';
 
 export type BuySource = 'amazon' | 'ebay' | 'etsy' | 'brand-site' | 'grailed';
 

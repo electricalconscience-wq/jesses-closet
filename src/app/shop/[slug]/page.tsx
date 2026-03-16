@@ -21,7 +21,7 @@ const sourceLabels: Record<string, string> = {
 export default function ProductDetailPage({ params }: { params: { slug: string } }) {
   const product = getProductBySlug(params.slug);
   if (!product) return notFound();
-  const related = getRelatedProducts(product);
+  const related = getRelatedProducts(product.slug);
   const sourceName = sourceLabels[product.buySource] || 'Store';
 
   return (
