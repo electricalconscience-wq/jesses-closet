@@ -4,63 +4,122 @@
 
 @layer base {
   :root {
-    --font-display: Georgia, 'Times New Roman', serif;
+    --font-display: 'Bebas Neue', Impact, sans-serif;
     --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'Courier New', Courier, monospace;
   }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   body {
     background-color: #0a0a0a;
     color: #e8e4de;
   }
+
   ::selection {
     background-color: #e8c840;
     color: #0a0a0a;
   }
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: #1a1a1a; }
-  ::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: #6b6b6b; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0a0a; }
+  ::-webkit-scrollbar-thumb { background: #8B4513; border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: #CD853F; }
 }
 
 @layer components {
+  /* Heavy film grain — grungy and cinematic */
   .grain-overlay {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 50;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-repeat: repeat;
+    mix-blend-mode: overlay;
   }
+
+  /* VHS scanlines */
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 49;
+    opacity: 0.03;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.3) 2px,
+      rgba(0, 0, 0, 0.3) 4px
+    );
+  }
+
+  /* Desert gradient text */
   .text-gradient {
-    background: linear-gradient(135deg, #e8c840 0%, #d4a017 100%);
+    background: linear-gradient(135deg, #e8c840 0%, #CC5500 50%, #8B4513 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Grungy card hover — rougher, more aggressive */
   .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px) rotate(-0.3deg);
+    box-shadow: 0 8px 32px rgba(139, 69, 19, 0.25), 0 0 0 1px rgba(232, 200, 64, 0.1);
   }
+
+  /* Scratched border effect */
+  .border-scratched {
+    border: 1px solid rgba(139, 69, 19, 0.3);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+  }
+
+  /* Desert dust particles background */
+  .dust-particles {
+    background-image: 
+      radial-gradient(1px 1px at 10% 20%, rgba(205,133,63,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(232,200,64,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 10%, rgba(205,133,63,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 40%, rgba(139,69,19,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, rgba(232,200,64,0.2) 0%, transparent 100%),
+      radial-gradient(2px 2px at 15% 75%, rgba(205,133,63,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 15%, rgba(139,69,19,0.2) 0%, transparent 100%);
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Product image with worn/scratched overlay */
+  .product-image-worn {
+    position: relative;
+  }
+  .product-image-worn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, transparent 40%, rgba(10,10,10,0.4) 100%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
 }
 
@@ -68,15 +127,39 @@
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
   .animate-slide-up {
     animation: slideUp 0.8s ease-out forwards;
   }
+
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Heat shimmer for desert effect */
+  .animate-shimmer {
+    animation: shimmer 8s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.5; transform: scaleY(1.02); }
+  }
+
+  /* Slow drift for background blobs */
+  .animate-drift {
+    animation: drift 20s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -20px) rotate(1deg); }
+    66% { transform: translate(-20px, 15px) rotate(-1deg); }
   }
 }

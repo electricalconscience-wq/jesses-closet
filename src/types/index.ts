@@ -20,6 +20,7 @@ export interface Product {
   tags: string[];
   colorHex: string;
   colorName: string;
+  imageUrl?: string;
   whyItMatches: string;
   affiliateUrl: string;
   buySource: BuySource;
