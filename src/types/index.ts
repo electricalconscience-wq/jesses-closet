@@ -4,19 +4,25 @@ export type Category = 'hoodies' | 'jackets' | 'pants' | 'tees' | 'accessories' 
 
 export type Era = 'season-1' | 'season-2' | 'season-3' | 'season-4' | 'season-5';
 
+export type BuySource = 'amazon' | 'ebay' | 'etsy' | 'brand-site' | 'grailed';
+
 export interface Product {
   id: string;
   slug: string;
   name: string;
+  brand: string;
   price: number;
   description: string;
   matchType: MatchType;
   category: Category;
   era?: Era;
+  episode?: string;
   tags: string[];
   colorHex: string;
   colorName: string;
   whyItMatches: string;
+  affiliateUrl: string;
+  buySource: BuySource;
   affiliateNote?: string;
   relatedSlugs: string[];
   featured: boolean;
